@@ -1,0 +1,49 @@
+﻿<Window x:Class="Powitanie.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Powitanie"
+        mc:Ignorable="d"
+        Title="Wiazanie danych" 
+        Height="450" 
+        Width="800">
+    <StackPanel>
+        <Slider
+            x:Name="rozmiarTekstu"
+            Minimum="10"
+            Maximum="45" SmallChange="0"
+           />
+        <ComboBox x:Name="kolorCzcionka"
+                SelectedIndex="0"
+                  Width="100"
+                  VerticalAlignment="Center">
+            <ComboBoxItem Content="Red"></ComboBoxItem>
+            <ComboBoxItem Content="Blue"></ComboBoxItem>
+            <ComboBoxItem Content="Green"></ComboBoxItem>
+            <ComboBoxItem Content="Orange"></ComboBoxItem>
+            <ComboBoxItem Content="Purple"></ComboBoxItem>
+        </ComboBox>
+        <TextBox 
+            x:Name="formatowanyTekst"
+            Width="300"
+            />
+        <TextBlock Margin="20">
+            <TextBlock.Text>
+                <Binding ElementName="tenText"
+                         Path="Text.Length">
+                    <Binding.StringFormat>
+                        {0} znaków 
+                    </Binding.StringFormat>
+                </Binding>
+            </TextBlock.Text>
+        </TextBlock>
+        <TextBlock 
+            Name="tenText"
+            FontSize="{Binding Path=Value, ElementName=rozmiarTekstu}" 
+            Text="{Binding ElementName=formatowanyTekst, Path=Text}"
+            Foreground="{Binding Path=SelectedItem.Content,ElementName=kolorCzcionka}">
+            
+        </TextBlock>
+    </StackPanel>
+</Window>
